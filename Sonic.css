@@ -1,0 +1,111 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+
+body {
+  
+  background: transparent;
+  color: #FAFAFA;
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.6);
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  
+}
+
+#log {
+  font: 600 30px "Open Sans Condensed";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 10px 15px;
+  padding-top: 100px;
+
+}
+
+#log>div {
+  margin-bottom: 15px;
+  margin-left: 5px;
+
+  /*padding: 5px 10px 10px;*/
+  border-radius: 20px 0 10px 10px;
+  /*box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);*/
+  animation: fadeInRight .3s ease forwards,  $message_hide_delay forwards;
+ 
+}
+
+@keyframes skew {
+  0% {
+    transform: skewX(20deg);
+  }
+  50% {
+    transform: skewX(-20deg);
+  }
+  100% {
+  transform: skewX(0deg);
+  }
+}
+
+#log>div.deleted {
+  
+  visibility: hidden;
+}
+
+.meta {
+  line-height: 1em;
+}
+
+.message {
+  display:block;
+  transform: translate(-11px, 0px) skewX(-20deg);
+  
+    background-image: linear-gradient(Lightblue, LightSkyBlue);
+  font-size: 20;
+  line-height: 1.5em;
+  text-transform: uppercase;
+  padding-left: 5px;
+  
+}
+
+.name {
+  transform: skewX(-20deg);
+  display: block;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  text-shadow: black 2px 2px 2px;
+  font-weight: 700;
+  background: #000A8D;
+  padding-left: 5px;
+  border-bottom: 2px solid #9EA5FF;
+}
+
+.colon {
+  display: none;
+}
+
+.badge {
+  display: block;
+  float: right;
+  padding-left: 5px;
+  height: 1em;
+  background: transparent !important;
+}
+
+#log .emote {
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 0.1em;
+  background-size: contain;
+}
+
+#log .emote img {
+  
+  display: inline-block;
+  height: 1em;
+  opacity: 0;
+  vertical-align: top;
+}

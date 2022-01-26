@@ -1,0 +1,187 @@
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans:800);
+@-webkit-keyframes MH {
+ from {
+   left: 50px;
+ }
+ to {
+   left: 2000px;
+ }
+}
+
+* {
+    box-sizing: border-box;
+}
+@-webkit-keyframes pulse {
+ 0% {
+   background-color: red;
+   opacity: 1.0;
+   -webkit-transform: scale(1.0) rotate(0deg);
+ }
+ 33% {
+   background-color: blue;
+   opacity: 0.75;
+   -webkit-transform: scale(1.8) rotate(-5eg);
+ }
+ 67% {
+   background-color: green;
+   opacity: 0.5;
+   -webkit-transform: scale(1.1) rotate(5deg);
+ }
+ 100% {
+   background-color: red;
+   opacity: 1.0;
+   -webkit-transform: scale(1.0) rotate(0deg);
+ }
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+  
+}
+
+body {
+    text-shadow: 0 0 1px #000, 0 0 2px #000;
+  	
+    background: $background_color;
+    font-family: 'Open Sans';
+    font-weight: 100;
+    font-size: $font_size;
+    line-height: 1.5em;
+    color: $text_color;
+  	padding: 10px;
+    
+
+  
+  	
+  	
+  	
+}
+
+#log>div .meta {
+  border-top-style: solid;
+  border-top-color: #4C4C4C;
+  border-top-width: 1px;
+    border-left-style: solid;
+  border-left-color: #4C4C4C;
+  border-left-width: 1px;
+  
+  
+}
+
+#log>div .message {
+    opacity: 50;
+
+TEXT-SHADOW: rgba(0,0,255,1) -1px -12px 0.5em;
+  letter-spacing: 1px;
+  border-top-style: solid;
+  border-top-color: #4C4C4C;
+  border-top-width: 1px;
+    border-right-style: solid;
+  border-right-color: #4C4C4C;
+  border-right-width: 1px;
+  
+  
+}
+
+
+.colon {
+    display: none;
+  
+}
+
+#log {
+    display: table;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0 0px 0px;
+    width: 100%;
+    table-layout: fixed;
+  
+}
+
+#log>div {
+    display: table-row;
+  	nth-child(even) background: #CCC
+	nth-child(odd) background: #FFF
+      
+  -webkit-animation: flipInX 500ms ease, fadeOutUp 1s ease $message_hide_delay forwards;
+  -webkit-animation: bounce 250ms ease, fadeOutDown 1s ease $message_hide_delay forwards;
+}
+
+#log>div.deleted {
+    visibility: hidden;
+  
+}
+
+#log .emote {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: relative;
+  text-SHADOW: rgba(0,0,255,1) -1px -12px 0.5em;
+  
+}
+
+#log .emote img {
+    display: inline-block;
+    height: 1em;
+    opacity: 0;
+  
+ 
+}
+
+#log .message,#log .meta {
+    vertical-align: bottom;
+  text-align: left;
+    display: table-cell;  
+  	
+  
+}
+
+#log .meta {
+    width: 35%;
+    text-align: left;
+  	vertical-align: top;
+    padding-top: 10px;
+    white-space: nowrap;
+    
+    overflow: hidden;
+background: linear-gradient(#4C0036, #11014C, #173D4C, #0A4C04, #4C4508);
+  
+  
+}
+
+#log .message {
+    word-wrap: break-word;
+    width: 65%;
+background: linear-gradient(#4C0036, #11014C, #173D4C, #0A4C04, #4C4508);
+  
+  
+}
+
+.badge {
+    display: inline-block;
+    margin-left: 0.2em;
+  margin-bottom: 0.2em;
+    position: left;
+    height: 1em;
+    vertical-align: middle;
+    top: -0.1em;
+  	
+}
+
+.name {
+    margin-left: 0.2em;
+  
+  
+}
+
+div{
+
+    width: 100px;
+  height: 1px;
+  max-width: 500px;
+  
+}

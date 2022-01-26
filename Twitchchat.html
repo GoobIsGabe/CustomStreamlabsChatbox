@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Chat sample</title>
+<style>
+/*IMPORTANT SIZING DETAILS*/
+/*Width: 371   Height: 512*/
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+body {
+	background: transparent;
+	color: #FAFAFA;
+	text-shadow: 0 0 1px rgba(0, 0, 0, 0.6), 0 0 2px rgba(0, 0, 0, 0.6);
+	padding: 100px;
+}
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
+#log {
+	font: 600 30px "Open Sans Condensed";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+	overflow: hidden;
+	padding: 0px 15px;
+	padding-top: 100px;
+}
+#log>div {
+	margin-top: -20px;
+	margin-left: 5px;
+	/*padding: 5px 10px 10px;*/
+	border-radius: 20px 0 10px 10px;
+  /* animation: [name] [duration] , [name] [duration] [ends with forwards]*/
+  animation: show-message 0.45s cubic-bezier(0.755, 0.050, 0.855, 0.060) reverse both,hide-message 1.2s forwards;
+  animation-delay: 0ms, 5000ms;
+  position: relative;
+}
+
+
+#log>div.deleted {
+	visibility: hidden;
+}
+.meta {
+	line-height: 1em;
+}
+.message {
+	display: block;
+	font-size: 15;
+	line-height: 1.5em;
+	padding-left: 5px;
+	transform: translateY(-2px);
+	--stroke-color: rgba(0, 0, 0, 0.81);
+	--stroke-width: 2px;
+	letter-spacing: var(--stroke-width);
+	color: rgba(255, 255, 255, 0.88);
+text-shadow: var(--stroke-width) 0 0 var(--stroke-color), calc(var(--stroke-width) * -1) 0 0 var(--stroke-color), 0 var(--stroke-width) 0 var(--stroke-color), 0 calc(var(--stroke-width) * -1) 0 var(--stroke-color);
+text-shadow: calc(var(--stroke-width) * 1) calc(var(--stroke-width) * 0) 0 var(--stroke-color), calc(var(--stroke-width) * 0.9239) calc(var(--stroke-width) * 0.3827) 0 var(--stroke-color), calc(var(--stroke-width) * 0.7071) calc(var(--stroke-width) * 0.7071) 0 var(--stroke-color), calc(var(--stroke-width) * 0.3827) calc(var(--stroke-width) * 0.9239) 0 var(--stroke-color), calc(var(--stroke-width) * 0) calc(var(--stroke-width) * 1) 0 var(--stroke-color), calc(var(--stroke-width) * -0.3827) calc(var(--stroke-width) * 0.9239) 0 var(--stroke-color), calc(var(--stroke-width) * -0.7071) calc(var(--stroke-width) * 0.7071) 0 var(--stroke-color), calc(var(--stroke-width) * -0.9239) calc(var(--stroke-width) * 0.3827) 0 var(--stroke-color), calc(var(--stroke-width) * -1) calc(var(--stroke-width) * 0) 0 var(--stroke-color), calc(var(--stroke-width) * -0.9239) calc(var(--stroke-width) * -0.3827) 0 var(--stroke-color), calc(var(--stroke-width) * -0.7071) calc(var(--stroke-width) * -0.7071) 0 var(--stroke-color), calc(var(--stroke-width) * -0.3827) calc(var(--stroke-width) * -0.9239) 0 var(--stroke-color), calc(var(--stroke-width) * 0) calc(var(--stroke-width) * -1) 0 var(--stroke-color), calc(var(--stroke-width) * 0.3827) calc(var(--stroke-width) * -0.9239) 0 var(--stroke-color), calc(var(--stroke-width) * 0.7071) calc(var(--stroke-width) * -0.7071) 0 var(--stroke-color), calc(var(--stroke-width) * 0.9239) calc(var(--stroke-width) * -0.3827) 0 var(--stroke-color);
+}
+.name {
+	display: block;
+	font-size: 0.6em;
+	text-shadow: 0px 0px 5px;
+	font-weight: 700;
+	box-sizing: content-box;
+	border-width: 5px;
+	border-bottom-style: solid;
+	border-image: linear-gradient(to right, rgb(0, 255, 255), rgba(255, 0, 255, 0.78), rgba(255, 255, 0, 0.5), rgba(0, 0, 0, 0.25),rgba(0, 0, 0, 0));
+	border-image-slice: 1;
+	transform: translateY(75%);
+	line-height: 5px;
+	margin: 20px 0;
+	padding-bottom: 10px;
+}
+.child {
+	text-shadow: 0px 0px 5px;
+	transform: translateY(-100%);
+	filter: blur(5px);
+	border-width: 5px;
+	border-bottom-style: solid;
+	border-image: linear-gradient(to right, #00ffff, #ff00ff, #ffff00, #000000);
+	border-image-slice: 1;
+}
+.badge {
+	margin-right: 5px;
+  animation: idle 0.5s linear infinite both;
+}
+.badges {
+	float: left;
+	transform: translateY(60%);
+	background: transparent !important;
+	height: 15px;/*animation: badge 500ms linear infinite both;*/
+}
+#log .emote {
+	background-repeat: no-repeat;
+	background-position: center;
+	padding: 0.1em;
+	background-size: contain;
+  
+}
+#log .emote img {
+	display: inline-block;
+	height: 1em;
+	opacity: 0;
+	vertical-align: top;
+  animation: emote-idle 0.5s linear infinite both;
+}
+
+/*Animations below*/
+@keyframes show-message {
+  0% {
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+            transform: translateX(0) scaleY(1) scaleX(1);
+    -webkit-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px) scaleX(2) scaleY(0.2);
+            transform: translateX(1000px) scaleX(2) scaleY(0.2);
+    -webkit-transform-origin: 0% 50%;
+            transform-origin: 0% 50%;
+    -webkit-filter: blur(40px);
+            filter: blur(40px);
+    opacity: 0;
+  }
+}
+
+@keyframes idle {
+ /* 0%{
+    filter: blur(0);
+    opacity: 1;
+  }
+  50%{
+    filter: blur(2px);
+    opacity: 1;
+  }
+  100%{
+    filter: blur(0);
+    opacity: 1;
+  }*/
+}
+
+
+@keyframes emote-idle {
+  0% {
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+    opacity: 1;
+  }
+	50% {
+    -webkit-transform: scale(2);
+            transform: scale(2);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+    opacity: 1;
+  }
+}
+
+
+@keyframes hide-message {
+  0% {
+    -webkit-transform: translateX(0) scaleY(1) scaleX(1);
+            transform: translateX(0) scaleY(1) scaleX(1);
+    -webkit-filter: blur(0);
+            filter: blur(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(250px) scaleX(2) scaleY(0.2);
+            transform: translateX(250px) scaleX(2) scaleY(0.2);
+    -webkit-filter: blur(40px);
+            filter: blur(40px);
+    opacity: 0;
+  }
+}
+
+</style>
+</head>
+
+<body>
+<!-- item will be appened to this layout --> 
+<!-- item will be appened to this layout -->
+<div id="log" class="sl__chat__layout"> </div>
+
+<!-- chat item -->
+
+<div data-from="{from}" data-id="{messageId}"> 
+  <!--    set (style="color: {color}")--> 
+  <span class="meta" style="color: black"> <span class="badges"> <img src ="https://static-cdn.jtvnw.net/badges/v1/5527c58c-fb7d-422d-b71b-f309dcb85cc1/1"/> </span> <span class="name" id="name">from </span>
+  <div class="child"> </div>
+  <span class="message"> {message} </span> </span> </div>
+</body>
+</html>
