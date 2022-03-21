@@ -110,12 +110,12 @@ text-shadow: calc(var(--stroke-width) * 1) calc(var(--stroke-width) * 0) 0 var(-
 }
 
 .emoji {
-    vertical-align: middle;
+   	vertical-align: middle;
 	display: inline-block;
 	height: 1em !important;
 	opacity: 0;
 	vertical-align: top;
-  animation: emote-idle 0.5s linear infinite both;
+  	animation: emote-idle 0.5s linear infinite both;
 }
 
 .hidden {
