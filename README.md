@@ -15,4 +15,8 @@ If you have stumbled across this, you're more than welcome to use this for your 
 * Copy the generated link into a new browser source in your broadcasting software
 * Enable custom CSS and paste the css file
 
+### Preview of channel chat
+
+![ChannelChat](https://puu.sh/IQ05w/d3bc286d8b.gif)
+
 Thank you for taking the time to look here, and I hope you have a pleasant day ahead!
