@@ -2,7 +2,7 @@
 A collection of various custom chatbox renditions I have created.
 If you have stumbled across this, you're more than welcome to use this for your own usages or to change them up to meet your needs.
 
-### Usage for Stremlabs
+### Usage for Streamlabs
 * In order for this to be used, you will need to navigate to [Streamlabs](https://streamlabs.com/dashboard#/chatbox "Chatbox") 
 * Enable Custom HTML/CSS
 * Copy the CSS in the appropriate section
