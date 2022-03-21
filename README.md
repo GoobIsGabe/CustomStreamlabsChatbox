@@ -14,5 +14,5 @@ If you have stumbled across this, you're more than welcome to use this for your 
 * Set any functional parameters you desire (i.e. Hide/Show bots, Hide commands)
 * Copy the generated link into a new browser source in your broadcasting software
 * Enable custom CSS and paste the css file
-* 
+
 Thank you for taking the time to look here, and I hope you have a pleasant day ahead!
